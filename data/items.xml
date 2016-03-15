@@ -1,0 +1,23 @@
+<items>
+	<item id="500">
+		<name>Wild Horseradish</name>
+		<source>Foraging during Spring</source>
+	</item>
+	<item id="501">
+		<name>Daffodil</name>
+		<source>Foraging during Spring</source>
+	</item>
+	<item id="502">
+		<name>Leek</name>
+		<source>Foraging during Spring</source>
+	</item>
+	<item id="503">
+		<name>Dandelion</name>
+		<source>Foraging during Spring</source>
+	</item>
+	
+	<item id="1000">
+		<name>Spring Seeds</name>
+		<source></sourcce>
+	</item>
+</items>
