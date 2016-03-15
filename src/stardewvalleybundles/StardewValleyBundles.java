@@ -6,6 +6,11 @@
 package stardewvalleybundles;
 
 import UI.MainFrame;
+import beans.BundleDb;
+import beans.ItemDb;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -17,9 +22,16 @@ public class StardewValleyBundles {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-	MainFrame mainFrame = new MainFrame();
-	mainFrame.setSize(400, 600);
-	mainFrame.setVisible(true);
+	try {
+	    ItemDb.Load();
+	    BundleDb.Load();
+	    
+	    MainFrame mainFrame = new MainFrame();
+	    mainFrame.setSize(400, 600);
+	    mainFrame.setVisible(true);
+	} catch (FileNotFoundException ex) {
+	    
+	}
     }
     
 }

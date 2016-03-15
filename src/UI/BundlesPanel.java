@@ -23,15 +23,9 @@ public class BundlesPanel extends JPanel
     
     public BundlesPanel()
     {
-	try {
-	    BundleDb.Load();
-	    
-	    setLayout(new FlowLayout(FlowLayout.LEFT));
-	    add(new JLabel("Bundle: "));
-	    add(new JComboBox());
-	} catch (FileNotFoundException ex) {
-	    Logger.getLogger(BundlesPanel.class.getName()).log(Level.SEVERE, null, ex);
-	}
+	setLayout(new FlowLayout(FlowLayout.LEFT));
+	add(new JLabel("Bundle: "));
+	add(new JComboBox());
     }
     
 }
