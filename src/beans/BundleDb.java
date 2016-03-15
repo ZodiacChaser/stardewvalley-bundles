@@ -24,13 +24,12 @@ import org.w3c.dom.NodeList;
  */
 public class BundleDb
 {
-    private static List<Bundle> bundles;
-    private static String bundleDbPath = "data/bundles.xml";
+    private static HashMap<Integer, Bundle> bundles;
+    private static final String bundleDbPath = "data/bundles.xml";
     
     public static void Load() throws FileNotFoundException
     {
-	bundles = new ArrayList<>();
-	
+	bundles = new HashMap<>();
 	File file = new File(bundleDbPath);
 	if (!file.exists() || !file.canRead())
 	    throw new FileNotFoundException("Bundle Db file doesn't exists or you doesn't have permission to read it.");
@@ -45,35 +44,40 @@ public class BundleDb
 	    //read this - http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
 	    doc.getDocumentElement().normalize();
 
-	    System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
-
 	    NodeList nList = doc.getElementsByTagName("bundle");
 
-	    System.out.println("----------------------------");
+	    for (int temp = 0; temp < nList.getLength(); temp++)
+	    { // For each bundle
+		Node nNode = nList.item(temp);
+		System.out.println("\nCurrent Element :" + nNode.getNodeName());
 
-	    for (int temp = 0; temp < nList.getLength(); temp++) {
-
-		    Node nNode = nList.item(temp);
-
-		    System.out.println("\nCurrent Element :" + nNode.getNodeName());
-
-		    if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-
-			    Element eElement = (Element) nNode;
-
-			    System.out.println("Bundle id : " + eElement.getAttribute("id"));
-			    NodeList itemList = ((Element)eElement.getElementsByTagName("items").item(0)).getElementsByTagName("item");
-			    System.out.println(itemList.getLength());
-			    for  (int i = 0; i < itemList.getLength(); i++)
-			    {
-				Element itemEntry = (Element)nList.item(i);
-				System.out.println(itemEntry.getElementsByTagName("id").item(0).getTextContent());
-			    }
-			    /*System.out.println("First Name : " + eElement.getElementsByTagName("firstname").item(0).getTextContent());
-			    System.out.println("Last Name : " + eElement.getElementsByTagName("lastname").item(0).getTextContent());
-			    System.out.println("Nick Name : " + eElement.getElementsByTagName("nickname").item(0).getTextContent());
-			    System.out.println("Salary : " + eElement.getElementsByTagName("salary").item(0).getTextContent());*/
+		if (nNode.getNodeType() == Node.ELEMENT_NODE)
+		{
+		    Element eElement = (Element) nNode;
+		    
+		    int bundleId = Integer.parseInt(eElement.getAttribute("id"));
+		    String bundleName = eElement.getElementsByTagName("name").item(0).getTextContent();
+		    List<BundleItem> bundleItems = new ArrayList<>();
+		    
+		    NodeList itemList = ((Element)eElement.getElementsByTagName("items").item(0)).getElementsByTagName("item");
+		    for  (int i = 0; i < itemList.getLength(); i++)
+		    { // For each required item
+			Element itemEntry = (Element)itemList.item(i);
+			int itemId = Integer.parseInt(itemEntry.getElementsByTagName("id").item(0).getTextContent());
+			int itemQuantity = Integer.parseInt(itemEntry.getElementsByTagName("quantity").item(0).getTextContent());
+			bundleItems.add(new BundleItem(itemId, itemQuantity));
 		    }
+		    
+		    int required = Integer.parseInt(eElement.getElementsByTagName("required").item(0).getTextContent());
+		    
+		    Element rewardElement = (Element)eElement.getElementsByTagName("reward").item(0);
+		    int rewardId = Integer.parseInt(rewardElement.getElementsByTagName("id").item(0).getTextContent());
+		    int rewardQuantity = Integer.parseInt(rewardElement.getElementsByTagName("quantity").item(0).getTextContent());
+		    BundleItem reward = new BundleItem(rewardId, rewardQuantity);
+		    
+		    Bundle bundle = new Bundle(bundleId, bundleName, required, bundleItems.toArray(new BundleItem[0]), reward);
+		    bundles.put(bundleId, bundle);
+		}
 	    }
 	} catch (Exception e) {
 	    e.printStackTrace();

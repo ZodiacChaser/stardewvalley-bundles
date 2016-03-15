@@ -13,4 +13,10 @@ public class BundleItem
 {
     private int itemId;
     private int quantity;
+    
+    public BundleItem(int id, int quantity)
+    {
+	this.itemId = id;
+	this.quantity = quantity;
+    }
 }

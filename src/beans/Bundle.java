@@ -12,8 +12,13 @@ package beans;
 public class Bundle
 {
     private int id;
-    private int requiredCount;
     private String name;
+    private int requiredCount;
     private BundleItem[] requiredItems;
     private BundleItem reward;
+    
+    public Bundle(int id, String name, int requiredCount, BundleItem[] items, BundleItem reward)
+    {
+	
+    }
 }
