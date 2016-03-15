@@ -21,4 +21,21 @@ public class Item
 	this.name = name;
 	this.source = source;
     }
+
+    public int getId() {
+	return id;
+    }
+
+    public String getName() {
+	return name;
+    }
+
+    public String getSource() {
+	return source;
+    }
+    
+    public String toString()
+    {
+	return name;
+    }
 }

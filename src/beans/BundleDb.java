@@ -83,6 +83,11 @@ public class BundleDb
 	}
     }
     
+    public static Bundle[] GetBundles()
+    {
+	return bundles.values().toArray(new Bundle[0]);
+    }
+    
     public Bundle GetBundle(int id)
     {
 	return null;
