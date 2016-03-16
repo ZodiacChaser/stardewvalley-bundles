@@ -65,4 +65,9 @@ public class ItemDb
 	    e.printStackTrace();
 	}
     }
+    
+    public static Item GetItem(int itemId)
+    {
+	return items.get(itemId);
+    }
 }

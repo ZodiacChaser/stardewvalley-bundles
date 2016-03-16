@@ -27,8 +27,9 @@ public class StardewValleyBundles {
 	    BundleDb.Load();
 	    
 	    MainFrame mainFrame = new MainFrame();
-	    mainFrame.setSize(400, 600);
+	    mainFrame.setSize(600, 600);
 	    mainFrame.setVisible(true);
+	    mainFrame.pack();
 	} catch (FileNotFoundException ex) {
 	    
 	}

@@ -25,4 +25,56 @@
 			<quantity>30</quantity>
 		</reward>
 	</bundle>
+	<bundle id="2">
+		<name>Summer Foraging Bundle</name>
+		<items>
+			<item>
+				<id>500</id>
+				<quantity>1</quantity>
+			</item>
+			<item>
+				<id>501</id>
+				<quantity>1</quantity>
+			</item>
+			<item>
+				<id>502</id>
+				<quantity>1</quantity>
+			</item>
+			<item>
+				<id>503</id>
+				<quantity>1</quantity>
+			</item>
+		</items>
+		<required>5</required>
+		<reward>
+			<id>1000</id>
+			<quantity>30</quantity>
+		</reward>
+	</bundle>
+	<bundle id="3">
+		<name>Fall Foraging Bundle</name>
+		<items>
+			<item>
+				<id>500</id>
+				<quantity>1</quantity>
+			</item>
+			<item>
+				<id>501</id>
+				<quantity>1</quantity>
+			</item>
+			<item>
+				<id>502</id>
+				<quantity>1</quantity>
+			</item>
+			<item>
+				<id>503</id>
+				<quantity>1</quantity>
+			</item>
+		</items>
+		<required>4</required>
+		<reward>
+			<id>1000</id>
+			<quantity>30</quantity>
+		</reward>
+	</bundle>
 </bundles>

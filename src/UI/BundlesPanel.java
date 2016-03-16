@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BoxLayout;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -23,22 +24,29 @@ import javax.swing.JPanel;
 public class BundlesPanel extends JPanel
 {
     private JComboBox comboBox;
-    
+    private BundleInfoPanel bundleInfo;
     
     public BundlesPanel()
     {
-	setLayout(new FlowLayout(FlowLayout.LEFT));
-	add(new JLabel("Bundle: "));
+	bundleInfo = new BundleInfoPanel(null);
+	
 	comboBox = new JComboBox();
 	comboBox.addActionListener(this::BundleSelected);
 	for (Bundle bundle : BundleDb.GetBundles())
 	    comboBox.addItem(bundle);
-	add(comboBox);
+	
+	setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+	JPanel selector = new JPanel();
+	selector.add(new JLabel("Bundle: "));
+	selector.add(comboBox);
+	add(selector);
+	add(bundleInfo);
+	
     }
     
     public void BundleSelected(ActionEvent e)
     {
 	Bundle bundle = (Bundle)comboBox.getSelectedItem();
-	System.out.println(bundle.getName());
+	bundleInfo = new BundleInfoPanel(bundle);
     }
 }
