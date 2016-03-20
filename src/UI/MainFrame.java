@@ -40,10 +40,13 @@ public class MainFrame extends JFrame {
 	bundlesPanel = new BundlesPanel();
 	itemListPanel = new ItemListPanel();
 	
-	midPanel.add(bundlesPanel);
-	midPanel.add(itemListPanel);
+	//midPanel.add(bundlesPanel);
+	//midPanel.add(itemListPanel);
 	
-	add(midPanel, BorderLayout.CENTER);
+	//add(midPanel, BorderLayout.);
+	
+	add(bundlesPanel, BorderLayout.WEST);
+	add(itemListPanel, BorderLayout.EAST);
 	
 	
 	

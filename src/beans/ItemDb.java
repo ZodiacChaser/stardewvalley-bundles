@@ -8,8 +8,11 @@ package beans;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Vector;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
@@ -69,5 +72,10 @@ public class ItemDb
     public static Item GetItem(int itemId)
     {
 	return items.get(itemId);
+    }
+    
+    public static List<Item> GetItemList()
+    {
+	return new ArrayList<>(items.values());
     }
 }
