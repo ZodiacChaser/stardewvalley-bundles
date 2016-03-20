@@ -39,6 +39,7 @@ public class BundlesPanel extends JPanel
 	JPanel selector = new JPanel();
 	selector.add(new JLabel("Bundle: "));
 	selector.add(comboBox);
+	selector.setMaximumSize(selector.getPreferredSize());
 	add(selector);
 	add(bundleInfo);
 	

@@ -40,7 +40,9 @@ public class ItemListPanel extends JPanel
 	setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 	
 	JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-	JTextField searchBox = new JTextField("aaaaa");
+	JTextField searchBox = new JTextField();
+	searchBox.setPreferredSize(new Dimension(150, searchBox.getPreferredSize().height));
+	searchBox.setMinimumSize(searchBox.getPreferredSize());
 	
 	searchPanel.add(new JLabel("Search:"));
 	searchPanel.add(searchBox);
