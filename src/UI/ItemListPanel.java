@@ -9,6 +9,7 @@ import UI.Renderer.ItemRenderer;
 import UI.TableModel.ItemTableModel;
 import beans.Item;
 import beans.ItemDb;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -18,9 +19,11 @@ import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.RowFilter;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.border.Border;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -44,16 +47,17 @@ public class ItemListPanel extends JPanel
 	searchBox.setPreferredSize(new Dimension(150, searchBox.getPreferredSize().height));
 	searchBox.setMinimumSize(searchBox.getPreferredSize());
 	
-	searchPanel.add(new JLabel("Search:"));
+	searchPanel.add(new JLabel("<i>Search:</i>"));
 	searchPanel.add(searchBox);
 	searchPanel.setPreferredSize(new Dimension(300, searchPanel.getPreferredSize().height));
 	searchPanel.setMaximumSize(searchPanel.getPreferredSize());
 	
 	add(searchPanel);
 	
+	JPanel resultPanel = new JPanel(new BorderLayout());
 	JTable table = new JTable(new ItemTableModel(ItemDb.GetItemList()));
 	
-	rowSorter = new TableRowSorter<>(table.getModel());
+	
 	table.setRowSorter(rowSorter);
 	
 	searchBox.getDocument().addDocumentListener(new DocumentListener(){
@@ -89,6 +93,10 @@ public class ItemListPanel extends JPanel
 	
 	table.setDefaultRenderer(Item.class, new ItemRenderer());
 	table.setRowHeight(80);
-	add(table);
+	resultPanel.add(table, BorderLayout.WEST);
+	JScrollPane scrollPane = new JScrollPane(table);
+	scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+	resultPanel.add(scrollPane, BorderLayout.EAST);
+	add(resultPanel);
     }
 }
